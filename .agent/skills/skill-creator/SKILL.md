@@ -1,135 +1,108 @@
 ---
 name: skill-creator
-description: Creates and validates new agent skills following the Anthropic Skills Framework. Use this to scaffold, write, and verify skills.
+description: Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends the agent's capabilities with specialized knowledge, workflows, or tool integrations.
 ---
 
 # Skill Creator
 
-## Overview
+This skill provides guidance for creating effective skills using the Anthropic Skills Framework.
 
-This skill helps you create, structure, and validate new agent skills. It follows the [Anthropic Skills Framework](https://github.com/anthropics/skills) and ensures every skill is consistent, actionable, and self-contained.
+## About Skills
 
-## When to Use
+Skills are modular, self-contained folders that extend the agent's capabilities by providing specialized knowledge, workflows, and tools. Think of them as "onboarding guides" for specific domains or tasks—they transform a general-purpose agent into a specialized expert.
 
-- User asks to "create a skill for X"
-- A repeating pattern emerges that should be codified
-- A new integration or workflow needs formalization
+**What Skills Provide:**
+1. **Specialized workflows** - Multi-step procedures for specific domains.
+2. **Tool integrations** - Instructions for working with specific file formats or APIs.
+3. **Domain expertise** - Company-specific knowledge, schemas, business logic.
+4. **Bundled resources** - Scripts, references, and assets for complex and repetitive tasks.
+
+---
+
+## Core Principles
+
+### 1. Concise is Key
+The context window is a public good. **Default assumption: The agent is already very smart.** Only add context the agent doesn't already have. Challenge each piece of information: "Does the agent really need this explanation?" and "Does this paragraph justify its token cost?" Prefer concise examples over verbose explanations.
+
+### 2. Set Appropriate Degrees of Freedom
+Match the level of specificity to the task's fragility and variability:
+- **High freedom (text instructions)**: Use when multiple approaches are valid, decisions depend on context, or heuristics guide the approach.
+- **Medium freedom (pseudocode/parameters)**: Use when a preferred pattern exists, and some variation is acceptable.
+- **Low freedom (specific scripts)**: Use when operations are fragile and error-prone, and consistency is critical.
+
+### 3. Progressive Disclosure Design
+Skills use a multi-level loading system to manage context efficiently:
+1. **Metadata** (`description` in YAML frontmatter) - Always in context, determines when the skill triggers.
+2. **SKILL.md body** - Loaded only when the skill triggers (Keep under 300 lines).
+3. **Bundled resources** (`references/`, `scripts/`) - Loaded or executed ONLY as explicitly needed by the agent.
+
+---
 
 ## Anatomy of a Skill
+
+Every skill consists of a required `SKILL.md` file and optional bundled resources.
 
 ```
 skill-name/
 ├── SKILL.md              (required — instructions + metadata)
-├── scripts/              (optional — executable automation)
-├── references/           (optional — docs loaded on demand)
-└── assets/               (optional — templates, schemas)
+├── scripts/              (optional — executable automation, e.g., TypeScript/Bash)
+├── references/           (optional — docs loaded on demand into context)
+└── assets/               (optional — files used in output, templates, icons)
 ```
 
-> Only create subdirectories when you have content for them. Empty dirs are forbidden.
+> **IMPORTANT**: A skill should only contain essential files. Do NOT create extraneous documentation like `README.md`, `INSTALLATION_GUIDE.md`, or `CHANGELOG.md`.
+
+### Bundled Resources Explained
+
+#### References (`references/`)
+Documentation intended to be loaded automatically into context to inform the agent's process.
+- **Examples**: `finance.md` for schemas, `policies.md` for rules, `api_docs.md`.
+- **Pattern**: If the skill has multiple sub-domains, organize them by variant (e.g., `references/aws.md`, `references/gcp.md`) and only instruct the agent to load the relevant one.
+- **Rule of Thumb**: Information lives in `SKILL.md` OR in `references/`—never both. Keep `SKILL.md` as the workflow guide.
+
+#### Assets (`assets/`)
+Files NOT intended to be loaded into context, but used within the output the agent produces.
+- **Examples**: `logo.png`, layout templates, fonts, boilerplate code folders.
+
+#### Scripts (`scripts/`)
+Executable code for tasks that require deterministic reliability.
 
 ---
 
-## Step 1 — Scaffold
+## Skill Creation Process
+
+Follow these steps to create or update a skill:
+
+### Step 1: Understand & Plan
+- Understand the skill functionality with concrete examples. What exact workflows will the agent execute?
+- Identify reusable contents: What scripts, references, and assets are needed?
+
+### Step 2: Initialize
+Use the scaffolding script to create a template skill directory.
 
 ```bash
 npx tsx .agent/skills/skill-creator/scripts/create_skill.ts <skill-name>
 ```
 
-This creates the directory and a SKILL.md template. Skill name must be **kebab-case**.
+- Target skill name should be **kebab-case**, under 64 characters, preferably verb-led.
 
----
+### Step 3: Write SKILL.md and Resources
+- Implement the reusable `scripts/`, `references/`, and `assets/`.
+- Edit `SKILL.md` using **imperative language**.
+- **YAML Frontmatter**: The `description` field is the primary triggering mechanism. Be highly specific about *when* the agent should invoke it.
+- **Progressive Disclosure**: If files are large (>10k words), include grep search patterns or instructions on exactly when the agent should `view_file` them.
 
-## Step 2 — Write the SKILL.md
-
-### Required YAML Frontmatter
-
-```yaml
----
-name: my-skill-name
-description: A concise description of what this skill does and when to use it.
----
-```
-
-### Required Sections
-
-| Section | Purpose |
-|---|---|
-| `# Title` | Human-readable name |
-| `## Overview` | What this skill does (2-3 sentences max) |
-| `## When to Use` | Trigger conditions — when should the agent activate this? |
-| `## Instructions` | Step-by-step actionable instructions |
-| `## Examples` | Concrete input/output examples |
-
-### Optional Sections
-
-| Section | Purpose |
-|---|---|
-| `## Common Mistakes` | Anti-patterns to avoid |
-| `## References` | Links to `references/` files or external docs |
-
----
-
-## Step 3 — Design Principles
-
-### DO ✅
-
-- **Be specific and actionable** — "Run `npx tsc --noEmit`" > "Check types"
-- **Keep SKILL.md lean** — Move large schemas, templates, and docs to `references/`
-- **One skill = one responsibility** — Don't mix unrelated concerns
-- **Include concrete examples** — Real code, real commands, real output
-- **Use conditional logic** — "If X, do Y. If Z, do W."
-
-### DON'T ❌
-
-- **No behavioral rules** — "You are a senior engineer" belongs in GEMINI.md, not a skill
-- **No vague instructions** — "Write good code" is not actionable
-- **No duplication** — Don't repeat GEMINI.md rules or other skills
-- **No empty directories** — Only create `scripts/`, `references/`, `assets/` when needed
-- **No giant SKILL.md** — Keep under 200 lines. Use `references/` for overflow
-
----
-
-## Step 4 — Validate
+### Step 4: Validate
+Validate the directory to catch structural issues:
 
 ```bash
 npx tsx .agent/skills/skill-creator/scripts/validate_skill.ts .agent/skills/<skill-name>
 ```
 
-Validation checks:
-- ✅ SKILL.md exists
-- ✅ YAML frontmatter has `name` and `description`
-- ✅ Description is not a placeholder or too short
-- ✅ Has at least `## Overview` and `## Instructions` or `## When to Use`
-- ✅ No empty subdirectories
-- ✅ File size under 300 lines
+Validation ensures:
+- ✅ YAML frontmatter (`name`, `description`) is present.
+- ✅ No empty subdirectories exist.
+- ✅ File size bounds are respected.
 
----
-
-## Step 5 — Reference Files (Optional)
-
-Use `references/` for large documents loaded on demand:
-
-```
-references/
-├── api-schema.md          — API specifications
-├── error-catalog.md       — Known errors and solutions
-└── migration-patterns.md  — Database migration templates
-```
-
-**Rule:** Information lives in SKILL.md **or** in references — never both.
-
-Keep SKILL.md as the workflow guide. Keep references as the knowledge store.
-
----
-
-## Skill Quality Checklist
-
-- [ ] Name is kebab-case
-- [ ] Description is one clear sentence (not placeholder)
-- [ ] SKILL.md has Overview, When to Use, Instructions
-- [ ] Instructions are concrete and actionable (commands, not wishes)
-- [ ] Examples use real code/output
-- [ ] No behavioral rules (those go in GEMINI.md or `.agent/rules/`)
-- [ ] No duplication with existing skills
-- [ ] Under 200 lines (use references for overflow)
-- [ ] No empty directories
+### Step 5: Iterate
+Use the skill on real tasks. If the agent struggles, gets confused, or uses too much context, modify `SKILL.md` or move bulky text to the `references/` folder to refine progressive disclosure.
