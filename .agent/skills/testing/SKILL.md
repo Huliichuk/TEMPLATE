@@ -293,7 +293,27 @@ test.describe('Projects', () => {
 
 ---
 
-## 7. Vitest Configuration
+## 7. E2E Runtime Verification (cURL/Bash)
+
+For critical routing, SEO (hreflang, canonicals), and middleware configurations, Playwright alone is sometimes insufficient or too slow for rapid iteration. A highly effective pattern used by senior agents is **Parallel Runtime Verification** using `curl`.
+
+### When to use
+- Verifying middleware redirects (e.g., protected routes like `/pricing` vs `/login`).
+- Checking SEO tags (hreflang, canonical URLs) generated in the HTML `<head>`.
+- Validating HTTP Status Codes (200, 301, 307, 404).
+
+### The Pattern
+1. Start the dev server on a specific port in a background terminal: `npm run dev -- -p 3010`.
+2. Use `curl` to fetch specific routes, dump headers, and save the HTML:
+   - `curl -sS -D /tmp/headers.txt -o /tmp/output.html http://127.0.0.1:3010/es/pricing -w "%{http_code}\n"`
+3. Use file search tools (`grep_search` or `cat` command) to parse `/tmp/headers.txt` for redirects and `/tmp/output.html` for `<link rel="alternate">` or `<title>`.
+4. Clean up the background process when done.
+
+This guarantees that the raw HTTP response matches the expected Next.js server output before any hydration occurs.
+
+---
+
+## 8. Vitest Configuration
 
 ```typescript
 // vitest.config.ts
