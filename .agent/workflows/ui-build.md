@@ -43,14 +43,7 @@ Purpose: Build UI that is consistent across the product. Covers both new compone
 
 ---
 
-## Step 5 — Zero-Slop & Aesthetics Polish
 
-- Implement glassmorphism using `backdrop-blur` and semi-transparent borders.
-- Add mesh gradients for depth.
-- Ensure all animations use GPU-accelerated properties (`transform`, `opacity`).
-- **NanoBanana**: Generate custom high-end assets using `generate_image` instead of using placeholders.
-
----
 
 ## Output
 

@@ -25,12 +25,9 @@ If Phase 1 is not complete, proposing fixes is forbidden.
 
 ## Enforcement Rules (Mandatory)
 
-- If Phase 1 is incomplete → DO NOT propose fixes.
-- If required evidence is missing → ASK for it. Do not guess.
-- If multiple root causes are plausible → enumerate them and STOP.
-- If the root cause cannot be stated as a concrete mechanism → return to Phase 1.
-- If a fix requires refactoring unrelated code → STOP. Root cause is not isolated.
-- Correctness overrides helpfulness.
+- If Phase 1 is incomplete, do not propose fixes.
+- If required evidence is missing, use tools to gather it.
+- If multiple root causes are plausible, test them systematically.
 
 ---
 
@@ -205,33 +202,7 @@ Fix the root cause, not the symptom.
      - < 3 → return to Phase 1
      - ≥ 3 → STOP and question architecture
 
----
 
-## Architectural Stop Rule (After 3 Failed Fixes)
-
-Indicators of architectural failure:
-
-- Each fix reveals new issues elsewhere
-- Fixes require broad refactoring
-- New symptoms appear in unrelated subsystems
-
-STOP and question fundamentals:
-
-- Is the pattern fundamentally sound?
-- Are we fixing symptoms of bad architecture?
-
-Do not proceed without architectural discussion.
-
----
-
-## Mandatory Stop Conditions
-
-STOP and return to Phase 1 if:
-
-- Issue is not reproducible
-- Evidence contradicts hypothesis
-- New symptoms appear elsewhere
-- You are about to try a third fix
 
 ---
 

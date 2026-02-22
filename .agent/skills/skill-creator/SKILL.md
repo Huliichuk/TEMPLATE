@@ -30,11 +30,8 @@ Match the level of specificity to the task's fragility and variability:
 - **Medium freedom (pseudocode/parameters)**: Use when a preferred pattern exists, and some variation is acceptable.
 - **Low freedom (specific scripts)**: Use when operations are fragile and error-prone, and consistency is critical.
 
-### 3. Progressive Disclosure Design
-Skills use a multi-level loading system to manage context efficiently:
-1. **Metadata** (`description` in YAML frontmatter) - Always in context, determines when the skill triggers.
-2. **SKILL.md body** - Loaded only when the skill triggers (Keep under 300 lines).
-3. **Bundled resources** (`references/`, `scripts/`) - Loaded or executed ONLY as explicitly needed by the agent.
+### 3. Keep it Simple
+Skills should be easy to read and understand. Avoid overly complex instructions.
 
 ---
 
@@ -46,26 +43,11 @@ Every skill consists of a required `SKILL.md` file and optional bundled resource
 skill-name/
 ├── SKILL.md              (required — instructions + metadata)
 ├── scripts/              (optional — executable automation, e.g., TypeScript/Bash)
-├── references/           (optional — docs loaded on demand into context)
+├── references/           (optional — docs to be used if needed)
 └── assets/               (optional — files used in output, templates, icons)
 ```
 
 > **IMPORTANT**: A skill should only contain essential files. Do NOT create extraneous documentation like `README.md`, `INSTALLATION_GUIDE.md`, or `CHANGELOG.md`.
-
-### Bundled Resources Explained
-
-#### References (`references/`)
-Documentation intended to be loaded automatically into context to inform the agent's process.
-- **Examples**: `finance.md` for schemas, `policies.md` for rules, `api_docs.md`.
-- **Pattern**: If the skill has multiple sub-domains, organize them by variant (e.g., `references/aws.md`, `references/gcp.md`) and only instruct the agent to load the relevant one.
-- **Rule of Thumb**: Information lives in `SKILL.md` OR in `references/`—never both. Keep `SKILL.md` as the workflow guide.
-
-#### Assets (`assets/`)
-Files NOT intended to be loaded into context, but used within the output the agent produces.
-- **Examples**: `logo.png`, layout templates, fonts, boilerplate code folders.
-
-#### Scripts (`scripts/`)
-Executable code for tasks that require deterministic reliability.
 
 ---
 
