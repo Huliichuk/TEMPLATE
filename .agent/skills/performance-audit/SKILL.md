@@ -15,7 +15,7 @@ This skill provides a systematic approach to auditing and optimizing the perform
 
 ---
 
-## 1. Core Web Vitals Targets (Mandatory)
+## 1. Core Web Vitals Targets
 
 | Metric | Target | What It Measures |
 |---|---|---|
@@ -37,7 +37,7 @@ This skill provides a systematic approach to auditing and optimizing the perform
 - Stream server components to show content progressively
 
 ### Animation Performance
-- **GPU-only properties**: `transform`, `opacity` — never animate `width`, `height`, `top`, `left`
+- **GPU-only properties**: `transform`, `opacity` — avoid animating `width`, `height`, `top`, `left`
 - **`will-change`**: Apply sparingly to known animated elements: `will-change: transform`
 - **`content-visibility: auto`**: For long pages, skip rendering off-screen sections
 - **LazyMotion**: Reduces Motion bundle from 34KB → 4.6KB (see `motion-framer.md`)
@@ -51,7 +51,7 @@ This skill provides a systematic approach to auditing and optimizing the perform
 
 ## 3. Data Fetching (Next.js 15)
 
-### Parallel Fetching (Mandatory — No Waterfalls)
+### Parallel Fetching
 
 ```typescript
 // ❌ Sequential — 600ms total

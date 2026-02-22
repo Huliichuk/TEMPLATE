@@ -7,13 +7,13 @@ description: Testing patterns for Next.js applications with Vitest, React Testin
 
 ## Overview
 
-This skill defines **testing standards** for all code in the project. Testing is not optional — critical business logic, data transformations, and user-facing workflows MUST be covered.
+This skill defines testing patterns for code in the project.
+
+> [!CAUTION]
+> Do NOT write tests (unit, integration, or E2E) by default when implementing features or fixing bugs. ONLY write tests if the user EXPLICITLY requests them.
 
 ### When to Use
-- Creating new features (write tests alongside implementation)
-- Fixing bugs (write a failing test first, then fix)
-- Refactoring (ensure existing tests pass before and after)
-- Adding Server Actions or API routes
+- ONLY when the user asks you to write tests for a specific feature, component, or bug fix.
 
 ---
 
@@ -338,19 +338,25 @@ export default defineConfig({
 })
 ```
 
+### Query Priority
+
+1. `getByRole` - Highest priority (accessibility)
+2. `getByLabelText` - Forms
+3. `getByPlaceholderText` - Inputs
+4. `getByText` - Static content
+5. `getByTestId` - Last resort (requires adding `data-testid`)
+
 ---
 
-## 8. What to Test (Priority)
+## What to Test
 
-| Priority | What | Example |
-|---|---|---|
-| 🔴 **Must** | Business logic & data transformations | `calculateTotal`, `formatCurrency` |
-| 🔴 **Must** | Zod schemas & validation | All `CreateXSchema`, `UpdateXSchema` |
-| 🔴 **Must** | Server Actions (auth + validation) | `createProject`, `deleteInvoice` |
-| 🟡 **Should** | Component behavior (user flows) | Form submission, error display |
-| 🟡 **Should** | Custom hooks (TanStack Query) | Optimistic updates, cache invalidation |
-| 🟢 **Nice** | E2E critical paths | Login → Create → View → Delete |
-| ⚪ **Skip** | Pure UI rendering (no logic) | Static cards, layout components |
+| Priority | Category | Example |
+| :--- | :--- | :--- |
+| **High** | Business logic & data transformations | `calculateTotal`, `formatCurrency` |
+| **High** | Zod schemas & validation | All `CreateXSchema`, `UpdateXSchema` |
+| **High** | Server Actions (auth + validation) | `createProject`, `deleteInvoice` |
+| **Medium** | Complex UI State | Multi-step forms, specialized custom hooks |
+| **Low** | Pure UI Components | Static buttons, standard layout wrappers |
 
 ## Rules
 

@@ -3,27 +3,24 @@ name: seo-specialist
 description: Expert-level SEO implementation for Next.js App Router applications. Covers metadata, structured data, Core Web Vitals, internationalization, and crawl optimization.
 ---
 
-# SEO Specialist Skill — Expert-Level Next.js SEO
+# SEO Specialist Skill — Next.js SEO
 
 ## Overview
 
-This skill is the **definitive guide** for implementing production-grade SEO in Next.js App Router applications. Every page built by the agent MUST follow these SEO standards — visibility without traffic is a failed page.
+This skill is the guide for implementing SEO in Next.js App Router applications. 
 
 > [!CAUTION]
-> A page without proper metadata, structured data, and canonical URLs is an SEO violation. Every public-facing page MUST implement at minimum: title, description, Open Graph, canonical URL, and JSON-LD.
+> Do not aggressively add JSON-LD, Breadcrumb schemas, or complex metadata to pages unless the user explicitly requests SEO optimization for that page. Keep metadata simple (Title, Description) by default.
 
 ## When to Use
 
-- Building **any** new page or route
-- Creating dynamic routes (blog posts, products, user profiles)
-- Implementing internationalization (i18n)
-- Optimizing Core Web Vitals performance
-- Setting up sitemaps, robots.txt, or social sharing
-- **Mandatory for all public-facing pages**
+- When explicitly asked to optimize a page for SEO.
+- Creating dynamic routes that specifically need search visibility (e.g. blog posts).
+- Implementing internationalization (i18n).
 
 ---
 
-## 1. Metadata API (MANDATORY for Every Page)
+## 1. Metadata API
 
 ### 1.1 Static Metadata (Fixed Pages)
 For pages with unchanging content (about, contact, pricing):
@@ -337,10 +334,9 @@ export function JsonLd({ data }: JsonLdProps) {
 | How-to guide | `HowTo` + `Article` |
 
 ### 2.3 Rules
-- Use `schema-dts` package for TypeScript type safety when available
 - Sanitize ALL dynamic content in JSON-LD to prevent XSS
 - Place JSON-LD in the page component, not in `<head>` (Next.js handles it)
-- Validate structured data after every change
+- Only implement JSON-LD if explicitly requested.
 
 ---
 
@@ -477,13 +473,11 @@ export const metadata: Metadata = {
 
 ## 6. Technical SEO Checklist
 
-### Per-Page Checklist (MANDATORY)
+### Per-Page Checklist (When SEO is requested)
 - [ ] `title` tag — unique, 50-60 characters, includes primary keyword
 - [ ] `meta description` — unique, 120-160 characters, compelling CTA
-- [ ] Canonical URL set
-- [ ] Open Graph tags (title, description, image, url, type)
-- [ ] Twitter Card tags
-- [ ] JSON-LD structured data (appropriate schema type)
+- [ ] Open Graph tags (if requested)
+- [ ] JSON-LD structured data (only if requested)
 - [ ] Single `<h1>` per page with primary keyword
 - [ ] Semantic HTML (`<main>`, `<article>`, `<section>`, `<nav>`, `<aside>`)
 - [ ] All images have descriptive `alt` attributes

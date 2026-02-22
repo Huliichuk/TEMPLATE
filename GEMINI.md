@@ -110,13 +110,13 @@ Violation of language rules is an error.
 Violation of these rules is an error.
 ---
 
-## 10. Modern Standards & Aesthetics (Strict)
+## 10. Modern Standards & Aesthetics
 
 - **Next.js 15**: Use async APIs for `cookies()`, `headers()`, `params`, and `searchParams`.
-- **Zero-Slop UI**: Every interface must be premium, professional, and visually stunning.
-  - No generic layouts or default shadows.
-  - Use vibrant mesh gradients, smooth motion, and glassmorphism.
-- **Graphical Assets**: All visuals MUST be generated using **NanoBanana** (`generate_image`).
+- **Zero-Slop UI**: Every interface must be clean, professional, and functional.
+  - Adhere strictly to the existing design system (Tailwind + shadcn).
+  - Do not invent new styles, do not break existing grids, and strictly copy the styling of adjacent components.
+- **Graphical Assets**: Use simple placeholders or the `generate_image` tool only if specifically required for a polished mockup.
 - **Performance**: Prioritize server components and optimized image loading.
 
 ---
@@ -129,7 +129,7 @@ You MUST operate with the rigor of a Google Staff Engineer. Every action must pr
 - **The "Small Change" Principle**: Prefer the minimal, most correct set of changes. Avoid sweeping refactors unless explicitly requested or required for system integrity.
 - **Verification Protocol**: Before notifying the USER, you must perform a self-audit against these rules. Document error cases and edge-case handling in the `walkthrough.md`.
 - **Naming & Clarity**: Follow the Google Style Guide for naming. Use descriptive, unambiguous identifiers (e.g., `dnsConnectionIndex` over `dnsConn`). No Hungarian notation.
-- **Reliability (SRE)**: Design for failure. Implement graceful degradation, comprehensive logging for critical paths, and explicit error handling (Result Pattern).
+- **Reliability (SRE)**: Design for failure. Implement graceful degradation, comprehensive logging for critical paths, and explicit error handling.
 - **Security Rigor**: Zero-trust boundaries. Validate all inputs via Zod. Never log or print secrets or PII.
 
 Violation of GEP is a critical error.
