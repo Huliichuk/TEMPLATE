@@ -25,18 +25,9 @@ DO NOT "invent" new styles, colors, or complex animations unless explicitly aske
 
 ## 1. Design Decision Framework
 
-Before writing any code, the agent MUST make conscious design decisions for the page:
+Before writing any code, the agent MUST review the existing project structure and determine the correct shadcn/ui components and Tailwind utility classes to use.
 
-| Decision | Options | Default |
-|---|---|---|
-| **Theme** | `dark-luxury` · `light-minimal` · `vibrant-bold` · `editorial` | `dark-luxury` |
-| **Motion Level** | `cinematic` (heavy parallax/scroll) · `refined` (micro-interactions) · `subtle` (hover/fade only) | `refined` |
-| **Hero Strategy** | `full-bleed-media` · `split-layout` · `text-centric` · `interactive-3d` | `split-layout` |
-| **Color Approach** | `monochromatic-accent` · `mesh-gradient` · `duotone` · `brand-palette` | `mesh-gradient` |
-| **Typography** | `serif-display` · `geometric-sans` · `mixed-contrast` | `geometric-sans` |
-| **Mobile Layout** | `stack-reflow` · `drawer-nav` · `bottom-nav` · `swipe-cards` | `stack-reflow` |
-
-The agent documents these choices in a brief comment at the top of the main page component.
+The agent documents its component structure choices in a brief comment at the top of the main page component before implementation.
 
 ### 1.1 UI Implementation Plan
 
@@ -48,23 +39,18 @@ The UI Implementation Plan MUST include:
 **B. Style Specification**
 ```markdown
 ## Visual Style
-- **Theme**: dark-luxury
-- **Primary Colors**: `#6366f1` (indigo-500), `#8b5cf6` (violet-500)
-- **Background**: `hsl(224 71% 4%)` → `hsl(222 47% 11%)`
-- **Typography**: Inter (body) + Cal Sans (display)
-- **Border Radius**: `rounded-xl` (cards), `rounded-2xl` (hero sections)
-- **Glassmorphism**: `bg-white/5 backdrop-blur-xl border border-white/10`
+- **Colors**: Strictly adhere to `tailwind.config.ts` (e.g. `bg-background`, `text-primary`)
+- **Typography**: Existing fonts only
+- **Components**: Re-use existing shadcn blocks
 ```
 
 **C. Component Structure**
 ```markdown
 ## Page Structure
-1. `<Navbar />` — sticky, glassmorphism, mobile hamburger
-2. `<HeroSection />` — split layout, gradient mesh, CTA buttons
-3. `<FeaturesGrid />` — bento grid, 3 columns desktop → 1 col mobile
-4. `<TestimonialsCarousel />` — swipeable on mobile
-5. `<CTASection />` — full-bleed gradient, centered text
-6. `<Footer />` — 4-column grid → stacked on mobile
+1. `<Navbar />` — mobile hamburger, standard layout
+2. `<HeroSection />` — standard layout, primary CTA
+3. `<FeaturesGrid />` — 3 columns desktop → 1 col mobile
+4. `<Footer />` — stacked on mobile
 ```
 
 **D. Responsive Behavior**
@@ -294,11 +280,6 @@ When real content loads, animate the transition from skeleton to real content us
   {dynamicTitle}
 </h1>
 ```
-
-### Glassmorphism Accessibility
-- **Contrast Rule**: If `text-white/60` is used, the background MUST be solid or `bg-black/80` minimum.
-- **High-Contrast Fallback**: Provide a `@media (prefers-contrast: more)` query that replaces glass effects with solid backgrounds and borders.
-
 
 
 ### Container Queries (Bento Grid)
