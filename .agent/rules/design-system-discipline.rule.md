@@ -52,14 +52,7 @@ Before creating new UI:
 - Follow existing spacing, typography, and layout conventions
 - If a new pattern is required, define it once and reuse it everywhere
 
----
 
-## Graphical Assets
-
-All graphical assets (images, illustrations, UI visuals, media files) MUST be generated using **NanoBanana** only.
-Manual creation or third-party graphical sources are forbidden.
-
----
 
 ## Output Discipline
 

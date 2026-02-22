@@ -78,31 +78,7 @@ type DocumentStatus = typeof DOCUMENT_STATUS[keyof typeof DOCUMENT_STATUS]
 ### Functional Core, Imperative Shell
 - Keep business logic **pure** and push I/O to the edges.
 - Container Classes are forbidden — export individual functions and constants.
-
-### Result Pattern (Mandatory for Business Logic)
-
-```typescript
-// Define once, reuse everywhere
-type Result<T, E = string> =
-  | { success: true; data: T }
-  | { success: false; error: E }
-
-// ✅ Business logic returns Result — no throwing
-function calculateDiscount(price: number, code: string): Result<number> {
-  if (price <= 0) return { success: false, error: 'Price must be positive' }
-  const discount = DISCOUNT_MAP[code]
-  if (!discount) return { success: false, error: `Unknown discount code: ${code}` }
-  return { success: true, data: price * (1 - discount) }
-}
-
-// ✅ Consumer handles both cases explicitly
-const result = calculateDiscount(100, 'SAVE20')
-if (!result.success) {
-  toast.error(result.error)
-  return
-}
-// result.data is narrowed to number here
-```
+- Handle errors gracefully, throwing errors when appropriate or returning explicit error types based on the surrounding context of the file. Do not force a specific error handling architecture (like the Result Pattern) if the existing code uses exceptions or promises.
 
 ### Zod Boundary Validation (Mandatory for External Input)
 

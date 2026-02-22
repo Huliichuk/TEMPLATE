@@ -124,7 +124,7 @@ export async function MyServerComponent() {
 ### UI Library Components
 - Import from designated UI directory (e.g., `@/components/ui/`)
 - Use `cn()` for conditional classes
-- Use **Zero-Slop UI** principles: glassmorphism, mesh gradients, and premium shadows.
+- Ensure standard, clean, and accessible UI patterns matching shadcn.
 
 ## Server vs Client Components (Next.js App Router)
 
