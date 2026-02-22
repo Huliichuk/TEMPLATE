@@ -60,7 +60,6 @@ The UI Implementation Plan MUST include:
 **E. Motion Specification**
 - List which sections have scroll animations and what type
 - Specify hover effects for interactive elements
-- Note any elements with parallax or special effects
 
 The user MUST review and approve this plan before coding begins.
 
@@ -215,7 +214,6 @@ ALL oversized display text MUST scale fluidly. Never let text overflow on mobile
 - **No `position: fixed` abuse**: Mobile Safari handles fixed positioning poorly with keyboard open
 - **Drawer instead of Modal**: On mobile, prefer slide-up drawers over centered modals (thumb-friendly)
 - **Lazy Load Below Fold**: Only `priority` the hero image, lazy-load everything else
-- **Parallax on Mobile**: Disable CSS `perspective` parallax on touch. Use simple opacity fades
 - **Font sizes**: Minimum `text-sm` (14px) for body text on mobile. Never go below 12px
 
 ### 9.6 Image Responsiveness
@@ -294,6 +292,3 @@ Use `@container` queries for Bento Grid cards to adapt layout based on parent wi
 
 ---
 
-## References
-
-- [[references/motion.md]] — standard motion patterns.
