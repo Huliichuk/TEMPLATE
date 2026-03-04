@@ -1,6 +1,6 @@
 ---
 name: typescript-engineer
-description: Professional-grade engineering standards for TypeScript, focusing on type safety, clean architecture, and modern best practices.
+description: Professional TypeScript engineering standards for type safety and maintainable architecture. Use when implementing, refactoring, or reviewing TypeScript code in this project.
 allowed-tools: []
 ---
 

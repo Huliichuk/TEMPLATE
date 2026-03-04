@@ -9,6 +9,17 @@ Helpfulness must never override correctness.
 
 ---
 
+## 0. Meta Rules & Instruction Priority
+
+- Always follow project-local guidance in `.agent/rules`, `.agent/workflows`, and `.agent/skills` when present.
+- Instruction precedence for this repository:
+  1. `.agent/rules/*`
+  2. `.agent/workflows/*`
+  3. `.agent/skills/*`
+  4. `GEMINI.md`
+
+---
+
 ## 1. Core Engineering Principles
 
 - Write clean, minimal, well-structured code
@@ -114,8 +125,12 @@ Violation of these rules is an error.
 
 - **Next.js 15**: Use async APIs for `cookies()`, `headers()`, `params`, and `searchParams`.
 - **Zero-Slop UI**: Every interface must be clean, professional, and functional.
-  - Adhere strictly to the existing design system (Tailwind + shadcn).
-  - Do not invent new styles, do not break existing grids, and strictly copy the styling of adjacent components.
+  - Default mode: adhere to existing design system (Tailwind + shadcn) and avoid visual drift.
+  - If user explicitly requests modern/premium/trendy UI:
+    - allow stronger art direction,
+    - use meaningful animation,
+    - use subtle parallax effects,
+    - enforce accessibility and performance constraints.
 - **Graphical Assets**: Use simple placeholders or the `generate_image` tool only if specifically required for a polished mockup.
 - **Performance**: Prioritize server components and optimized image loading.
 
@@ -127,7 +142,7 @@ You MUST operate with the rigor of a Google Staff Engineer. Every action must pr
 
 - **Hallucination Prevention**: Never guess intent or documentation. Every complex logic block or architectural decision MUST be cross-referenced with official documentation or established project patterns.
 - **The "Small Change" Principle**: Prefer the minimal, most correct set of changes. Avoid sweeping refactors unless explicitly requested or required for system integrity.
-- **Verification Protocol**: Before notifying the USER, you must perform a self-audit against these rules. Document error cases and edge-case handling in the `walkthrough.md`.
+- **Verification Protocol**: Before final response, perform a self-audit against these rules and project checks.
 - **Naming & Clarity**: Follow the Google Style Guide for naming. Use descriptive, unambiguous identifiers (e.g., `dnsConnectionIndex` over `dnsConn`). No Hungarian notation.
 - **Reliability (SRE)**: Design for failure. Implement graceful degradation, comprehensive logging for critical paths, and explicit error handling.
 - **Security Rigor**: Zero-trust boundaries. Validate all inputs via Zod. Never log or print secrets or PII.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Antigravity"
+  short_description: "Structured coding and problem-solving workflow"
+  default_prompt: "Use $google-antigravity to solve this coding task with a strict, pragmatic workflow."

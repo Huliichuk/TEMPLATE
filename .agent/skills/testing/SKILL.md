@@ -1,6 +1,6 @@
 ---
 name: testing
-description: Testing patterns for Next.js applications with Vitest, React Testing Library, MSW, and Playwright. Covers unit, integration, and E2E testing.
+description: Testing patterns for Next.js apps with Vitest, React Testing Library, MSW, and Playwright. Use when adding or fixing unit, integration, or end-to-end tests.
 ---
 
 # Testing Skill

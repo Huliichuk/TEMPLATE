@@ -1,5 +1,5 @@
 ---
-description: Create and apply Supabase database migrations safely
+description: Plan and apply Supabase migrations safely. Use when changing schema, policies, indexes, or database functions.
 ---
 
 # Migration Workflow

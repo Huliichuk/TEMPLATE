@@ -1,5 +1,5 @@
 ---
-description: Create conventional commit with emoji prefix and pre-commit checks
+description: Create conventional commits with pre-commit verification. Use when preparing clean, reviewable git commits.
 ---
 
 # Conventional Commit Workflow
@@ -22,7 +22,7 @@ git add <relevant files>
 // turbo
 3. Run pre-commit type check:
 ```bash
-npx tsc --noEmit --pretty 2>&1 | head -20
+npm run typecheck 2>&1 | head -40 || ./node_modules/.bin/tsc --noEmit --pretty 2>&1 | head -40
 ```
 
 4. If type check passes, analyze changes and generate commit message.

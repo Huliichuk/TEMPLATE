@@ -1,6 +1,6 @@
 ---
-name: Error Diagnostics
-description: Skills for diagnosing and resolving TypeScript, build, and runtime errors
+name: error-diagnostics
+description: Systematic debugging for TypeScript, build, runtime, and integration failures. Use when errors must be reproduced, triaged, and fixed with root-cause analysis.
 ---
 
 # Error Diagnostics Skill

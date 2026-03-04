@@ -1,6 +1,6 @@
 ---
-name: Stripe Integration
-description: Skills for Stripe billing, subscriptions, and webhook management
+name: stripe-integration
+description: Stripe billing, subscriptions, and webhook integration patterns. Use when implementing payments, debugging subscription state, or troubleshooting Stripe webhooks.
 ---
 
 # Stripe Integration Skill

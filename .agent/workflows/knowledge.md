@@ -1,5 +1,5 @@
 ---
-description: Create and maintain Obsidian-style knowledge notes
+description: Create and maintain reusable project knowledge notes. Use when decisions, patterns, or investigations should be persisted.
 ---
 
 # Knowledge Workflow

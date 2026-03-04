@@ -1,14 +1,13 @@
 ---
-name: pdf
-description: Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use this skill.
+name: pdf-processing
+description: Comprehensive PDF processing workflows for extraction, conversion, merging, splitting, forms, OCR, and generation. Use when a task involves reading, editing, transforming, or creating PDF files.
 license: Proprietary. LICENSE.txt has complete terms
-source: https://github.com/anthropics/skills/blob/main/skills/pdf/SKILL.md
 ---
 
 # PDF Processing Guide
 
 ## Overview
-This guide covers essential PDF processing operations using Python libraries and command-line tools. For advanced features, JavaScript libraries, and detailed examples, see REFERENCE.md. If you need to fill out a PDF form, read FORMS.md and follow its instructions.
+This guide covers essential PDF processing operations using Python libraries and command-line tools.
 
 ## Quick Start
 ```python

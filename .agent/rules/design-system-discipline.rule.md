@@ -11,8 +11,10 @@ Never create a “new style” per page, feature, or mood.
 
 ## Source of Truth
 
-- Design tokens live in:
-  - `src/styles/tokens.css` (CSS variables) OR `src/styles/tokens.ts` (if needed)
+- Design tokens live in app-specific style entrypoints, typically:
+  - `apps/*/src/app/globals.css`
+  - `apps/*/styles/globals.css`
+  - dedicated token files used by the active app
 - UI primitives MUST use **shadcn/ui** components
 - Styling MUST use **Tailwind CSS** only
 - No ad-hoc CSS frameworks or custom styling systems

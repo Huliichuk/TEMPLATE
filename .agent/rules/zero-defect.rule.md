@@ -4,7 +4,7 @@ trigger: always_on
 
 # Zero-Defect Development Rule
 
-You MUST produce code that works on the first try. Regressions and broken layouts are UNACCEPTABLE. Follow this protocol for every code change.
+Target production-safe changes on the first delivery attempt. Regressions and broken layouts are unacceptable. Follow this protocol for every code change.
 
 ## 1. Respect Existing Code
 - NEVER delete existing comments.
@@ -12,7 +12,7 @@ You MUST produce code that works on the first try. Regressions and broken layout
 - Strictly adhere to the existing patterns, naming conventions, and CSS/Tailwind rules used in the file and project.
 
 ## 2. Uncertainty Protocol
-- If you are NOT 100% certain about an API, import path, function signature, config option, or CSS class — STOP and verify.
+- If confidence is low about an API, import path, function signature, config option, or CSS class, stop and verify first.
 - Check official documentation or ask the user. NEVER guess.
 
 ## 3. Atomic Operations
@@ -20,6 +20,7 @@ You MUST produce code that works on the first try. Regressions and broken layout
 - If a file needs refactoring AND a new feature, do the refactor first as Task A, then the feature as Task B.
 
 ## 4. Verification Check
-- Self-review your changes before submitting: Does this change break any existing behavior? Does it break the layout? Are all imports correct?
+- Self-review your changes before submitting.
+- Verify: existing behavior preserved, layout intact, imports valid, and checks/tests pass for touched areas.
 
 **Enforcement**: Violation of this rule is a critical error per Google Engineering Principles (GEP).

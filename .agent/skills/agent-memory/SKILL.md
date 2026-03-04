@@ -1,6 +1,6 @@
 ---
 name: agent-memory
-description: Strategic skill for managing long-term agent memory, cross-agent communication, and context window optimization using Obsidian-style Markdown notes (Knowledge Management).
+description: Strategic memory and context orchestration for multi-agent workflows using Obsidian-style Markdown notes. Use when tasks span multiple sessions, agents, or long timelines and shared context must be persisted.
 ---
 
 # Agent Memory & Context Orchestration Skill
@@ -58,3 +58,7 @@ When orchestrating long-running sessions, context windows fill up quickly with t
 5. **Agent B (Orchestrator)**: Implements the profile using the exact rules discovered by Agent A, avoiding the same 20 steps of debugging.
 
 This is the definition of **Agent Knowledge Management**.
+
+## References
+
+- `references/memory-patterns.md` — concrete patterns for shared state, note structure, and context handoff.

@@ -1,5 +1,5 @@
 ---
-description: Multi-perspective code review for pull requests or changes
+description: Multi-perspective code review checklist. Use when reviewing pull requests, patches, or risky modifications.
 ---
 
 # Code Review

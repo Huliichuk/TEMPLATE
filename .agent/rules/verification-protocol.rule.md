@@ -4,14 +4,14 @@ trigger: always_on
 
 # Verification Protocol Rule
 
-Before calling `notify_user` or "finishing" any task, you MUST perform a self-audit to ensure your work meets Google Staff-level engineering standards.
+Before marking any task as complete, you MUST perform a self-audit to ensure your work meets Google Staff-level engineering standards.
 
 ---
 
 ## 1. Compliance Audit
 Check your work against the following core documents:
-- [GEMINI.md](file:///Users/tarashuliichuk/MyProjects/TEMPLATE/GEMINI.md) (All 11 sections)
-- [pr-checklist.md](file:///Users/tarashuliichuk/MyProjects/TEMPLATE/.agent/references/pr-checklist.md)
+- [GEMINI.md](../../GEMINI.md)
+- [pr-checklist.md](../references/pr-checklist.md)
 - Relevant Skill files (e.g., `typescript-engineer`, `component-architecture`)
 
 ## 2. Hallucination Prevention Check

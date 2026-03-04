@@ -1,5 +1,5 @@
 ---
-description: Systematic code refactoring workflow with safety checks
+description: Systematic refactoring with regression safety checks. Use when restructuring code without changing behavior.
 ---
 
 # Refactoring Workflow
@@ -11,7 +11,7 @@ Structured approach to refactoring code while maintaining correctness.
 // turbo
 1. Ensure clean build before starting:
 ```bash
-npx tsc --noEmit --pretty 2>&1 | tail -5
+npm run typecheck 2>&1 | tail -20 || ./node_modules/.bin/tsc --noEmit --pretty 2>&1 | tail -20
 ```
 
 2. Identify the refactoring target:
@@ -37,7 +37,7 @@ npx tsc --noEmit --pretty 2>&1 | tail -5
 // turbo
 5. **Verify after refactoring**:
 ```bash
-npx tsc --noEmit --pretty 2>&1 | head -20
+npm run typecheck 2>&1 | head -40 || ./node_modules/.bin/tsc --noEmit --pretty 2>&1 | head -40
 ```
 
 6. **Validate file sizes**:

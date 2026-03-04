@@ -1,6 +1,6 @@
 ---
-name: Component Architecture
-description: Patterns for building TypeScript React components with modern UI libraries
+name: component-architecture
+description: TypeScript React component architecture patterns for scalable UI code. Use when creating, refactoring, or standardizing components, forms, and layout structures.
 ---
 
 # Component Architecture Skill
@@ -114,17 +114,6 @@ export async function MyServerComponent() {
   return <div>{theme}</div>
 }
 ```
-
-## Styling Rules
-
-### Utility-First CSS (Tailwind)
-- ✅ `className="flex items-center gap-2 p-4 bg-background"`
-- ❌ No inline styles: `style={{ display: 'flex' }}`
-
-### UI Library Components
-- Import from designated UI directory (e.g., `@/components/ui/`)
-- Use `cn()` for conditional classes
-- Ensure standard, clean, and accessible UI patterns matching shadcn.
 
 ## Server vs Client Components (Next.js App Router)
 

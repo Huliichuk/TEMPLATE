@@ -1,6 +1,6 @@
 ---
 name: performance-audit
-description: Advanced skill for identifying and fixing performance bottlenecks in web applications. Includes profiling, rendering optimization, and network efficiency.
+description: Performance profiling and optimization patterns for web applications. Use when investigating slow loads, rendering jank, heavy bundles, or network bottlenecks.
 ---
 
 # Performance Audit Skill

@@ -1,5 +1,5 @@
 ---
-description: Run comprehensive code quality checks for TypeScript projects
+description: Run code quality and type-safety checks. Use when validating changes before review, commit, or deploy.
 ---
 
 # Code Quality Check
@@ -8,26 +8,31 @@ Comprehensive code quality and type safety verification.
 
 ## Steps
 
-// turbo
-1. Run TypeScript type checker:
+1. Select package manager (repo lockfile):
 ```bash
-npx tsc --noEmit --pretty 2>&1 | head -60
+PM=npm
+[ -f pnpm-lock.yaml ] && PM=pnpm
+[ -f yarn.lock ] && PM=yarn
 ```
 
-2. If errors found:
+2. Run TypeScript type checker:
+```bash
+$PM run typecheck 2>&1 | head -60 || ./node_modules/.bin/tsc --noEmit --pretty 2>&1 | head -60
+```
+
+3. If errors found:
    - Parse and analyze errors in priority order
    - Fix build-breaking errors first
    - Then fix type errors
    - Then fix warnings
    - Re-run check after each fix until all pass
 
-// turbo
-3. Run build verification (optional, more thorough):
+4. Run build verification (optional, more thorough):
 ```bash
-npm run build 2>&1 | tail -30
+$PM run build 2>&1 | tail -30
 ```
 
-4. Review results and report summary to user:
+5. Review results and report summary to user:
    - Total errors found
    - Errors fixed
    - Remaining issues (if any)

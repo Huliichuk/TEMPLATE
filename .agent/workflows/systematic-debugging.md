@@ -1,5 +1,5 @@
 ---
-description: Systematic Debugging
+description: Root-cause-first debugging protocol. Use when failures are unclear, recurring, or high-impact.
 ---
 
 # Systematic Debugging

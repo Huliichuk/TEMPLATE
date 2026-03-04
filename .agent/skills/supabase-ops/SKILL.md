@@ -1,6 +1,6 @@
 ---
-name: Supabase Operations
-description: Skills for interacting with Supabase database, auth, and storage
+name: supabase-ops
+description: Supabase database, auth, storage, and migration operations guide. Use when applying schema changes, debugging data/auth issues, or managing RLS and edge functions.
 ---
 
 # Supabase Operations Skill

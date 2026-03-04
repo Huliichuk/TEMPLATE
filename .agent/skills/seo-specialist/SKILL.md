@@ -1,6 +1,6 @@
 ---
 name: seo-specialist
-description: Expert-level SEO implementation for Next.js App Router applications. Covers metadata, structured data, Core Web Vitals, internationalization, and crawl optimization.
+description: SEO implementation guide for Next.js App Router applications. Use when shipping metadata, structured data, crawl controls, internationalization, and Core Web Vitals improvements.
 ---
 
 # SEO Specialist Skill — Next.js SEO

@@ -1,5 +1,5 @@
 ---
-description: Write and run tests for features and bug fixes
+description: Test design and execution workflow. Use when adding features, fixing bugs, or guarding against regressions.
 ---
 
 # Testing Workflow
@@ -22,10 +22,10 @@ Purpose: Ensure every feature and fix is backed by appropriate tests.
 
 ```bash
 # Find existing test files
-find src -name "*.test.*" -o -name "*.spec.*" 2>/dev/null | head -20
+find apps packages src -type f \( -name "*.test.*" -o -name "*.spec.*" \) 2>/dev/null | head -40
 
 # Check test framework config
-cat vitest.config.* jest.config.* 2>/dev/null | head -30
+ls -1 vitest.config.* jest.config.* playwright.config.* 2>/dev/null
 ```
 
 - Understand the existing test patterns and conventions
@@ -49,14 +49,18 @@ cat vitest.config.* jest.config.* 2>/dev/null | head -30
 ## Step 4 — Run and verify
 
 ```bash
+PM=npm
+[ -f pnpm-lock.yaml ] && PM=pnpm
+[ -f yarn.lock ] && PM=yarn
+
 # Run all tests
-npm test 2>&1 | tail -30
+$PM run test 2>&1 | tail -40
 
 # Run specific test file
-npx vitest run src/path/to/file.test.ts 2>&1
+$PM exec vitest run apps/path/to/file.test.ts 2>&1
 
 # Run with coverage (if configured)
-npm test -- --coverage 2>&1 | tail -20
+$PM run test -- --coverage 2>&1 | tail -20
 ```
 
 - All tests must pass

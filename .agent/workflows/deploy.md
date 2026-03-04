@@ -1,5 +1,5 @@
 ---
-description: Deploy changes to production via Vercel
+description: Deploy changes to production with safety checks. Use when shipping verified changes to live environments.
 ---
 
 # Deployment Workflow

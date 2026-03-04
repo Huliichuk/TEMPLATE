@@ -1,6 +1,6 @@
 ---
 name: agent-orchestration
-description: Advanced skill for building autonomous agents, orchestrators, and planning systems using Anthropic's Evaluator-Optimizer and Orchestrator-Worker patterns.
+description: Planning and orchestration patterns for autonomous agents using evaluator-optimizer and orchestrator-worker flows. Use when tasks require decomposition, delegation, and structured execution plans.
 ---
 
 # Agent Orchestration & Planning Skill

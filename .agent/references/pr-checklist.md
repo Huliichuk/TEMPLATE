@@ -13,6 +13,9 @@
 - [ ] Tailwind CSS only; shadcn/ui only; no visual drift
 - [ ] No inline styles for layout/design
 - [ ] Token-compliant colors, spacing, typography
+- [ ] Motion is meaningful and consistent (no random effects)
+- [ ] `prefers-reduced-motion` fallback exists for animations/parallax
+- [ ] Parallax/scroll animations are transform-based and performance-safe
 
 ## Security
 

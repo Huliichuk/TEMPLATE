@@ -1,5 +1,5 @@
 ---
-description: Feature Implementation Workflow
+description: Implement features with minimal-risk, contract-first delivery. Use when adding or extending product behavior.
 ---
 
 # Feature Implementation Workflow
