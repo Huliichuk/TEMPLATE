@@ -12,6 +12,7 @@ Helpfulness must never override correctness.
 ## 0. Meta Rules & Instruction Priority
 
 - Always follow project-local guidance in `.agent/rules`, `.agent/workflows`, and `.agent/skills` when present.
+- For coding/debugging/refactoring tasks, default to `.agent/skills/google-antigravity/SKILL.md` execution style.
 - Instruction precedence for this repository:
   1. `.agent/rules/*`
   2. `.agent/workflows/*`
@@ -148,3 +149,19 @@ You MUST operate with the rigor of a Google Staff Engineer. Every action must pr
 - **Security Rigor**: Zero-trust boundaries. Validate all inputs via Zod. Never log or print secrets or PII.
 
 Violation of GEP is a critical error.
+
+---
+
+## 12. Execution Safety Gate (Strict)
+
+- Before finalizing any implementation task, run:
+  - `lint` (or nearest equivalent static check if lint script is missing)
+  - `test` (or nearest equivalent targeted test command if full suite is unavailable)
+- Do not mark work complete when validation fails.
+- If checks cannot run (environment/tooling constraints), explicitly report:
+  - what command was attempted,
+  - why it could not run,
+  - what remains unverified.
+- Never run deployment/release/publish actions (including `git push`) unless the user explicitly asks for deployment in the current conversation.
+
+Violation of this section is a critical error.

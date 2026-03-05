@@ -18,8 +18,9 @@ Follow these operating rules on every task:
 2. Discover relevant code quickly with targeted search.
 3. Choose the smallest change set that solves the root problem.
 4. Implement the change end-to-end instead of stopping at analysis.
-5. Validate with focused checks (tests, lint, typecheck, runtime command).
-6. Report results with concrete file paths, what changed, and residual risks.
+5. Validate with focused checks (lint + tests are mandatory before completion unless blocked).
+6. Never deploy or run `git push` unless explicitly requested in the current conversation.
+7. Report results with concrete file paths, what changed, and residual risks.
 
 TypeScript-first mode:
 - Prefer TypeScript for implementation and scripts.
@@ -59,8 +60,9 @@ Apply a minimal-change strategy:
 ### 4) Verify
 
 Run the tightest useful validation:
+- Lint (or nearest equivalent static check) for touched areas.
 - Unit/integration tests touching changed behavior.
-- Lint/typecheck if relevant.
+- Typecheck/runtime check if relevant.
 - Local command or smoke check for runtime behavior.
 
 If verification cannot run, state exactly why and what remains unverified.
@@ -92,6 +94,7 @@ Before declaring done, verify:
 - Safety: no destructive commands unless explicitly requested.
 - Consistency: naming and patterns match existing code.
 - Traceability: summary maps edits to user request.
+- Validation: lint + tests were executed (or blockers and residual risk were explicitly reported).
 
 ## References
 

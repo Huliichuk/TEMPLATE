@@ -33,6 +33,12 @@ Check your work against the following core documents:
 - [ ] Are all secrets, tokens, or PII excluded from logs and commits?
 - [ ] Did I validate all user-provided inputs via **Zod** or equivalent?
 
+## 6. Completion Gate (Mandatory)
+- [ ] Did I run lint (or the nearest equivalent static check) before finalizing?
+- [ ] Did I run tests relevant to the changed behavior before finalizing?
+- [ ] If checks could not run, did I clearly report command attempts, blockers, and residual risk?
+- [ ] Did I avoid deployment/release/publish commands (including `git push`) unless explicitly requested in this conversation?
+
 ---
 
 **Protocol Enforcement**: Failure to follow this protocol is a violation of Google Engineering Principles (GEP).

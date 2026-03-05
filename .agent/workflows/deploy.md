@@ -6,6 +6,11 @@ description: Deploy changes to production with safety checks. Use when shipping 
 
 // turbo-all
 
+## Activation Constraint
+
+Run this workflow ONLY when the user explicitly requests deployment in the current conversation.
+If deployment was not explicitly requested, stop and continue with local verification workflows instead.
+
 ## Pre-deployment Checks
 
 1. Ensure clean build:
